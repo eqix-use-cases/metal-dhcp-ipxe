@@ -2,7 +2,7 @@
 
 apt-get upgrade -y
 apt-get install dnsmasq nginx pxelinux syslinux-common -y
-echo 'DNSMASQ_OPTS="-p0"' >> /etc/default/dnsmasq
+#echo 'DNSMASQ_OPTS="-p0"' >> /etc/default/dnsmasq
 rm /etc/nginx/sites-enabled/default
 
 tee -a /etc/nginx/sites-enabled/default > /dev/null <<-EOD
@@ -51,4 +51,5 @@ dhcp-boot=tag:efi-x86_64,bootx64.efi
 dhcp-boot=tag:efi-x86,bootx64.efi
 EOD
 
-
+systemctl stop systemd-resolved
+systemctl disable systemd-resolved
